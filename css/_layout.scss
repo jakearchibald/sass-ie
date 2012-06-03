@@ -1,0 +1,36 @@
+.page {
+	@include respond-min(70em) {
+		width: 70em;
+		margin: 0 auto;
+	}	
+}
+.content-margins {
+	margin: 10px;
+
+	@include respond-min(60em) {
+		margin: 20px;
+	}
+}
+.primary {
+	@include respond-min(45em) {
+		float: left;
+		width: 70%;
+
+		@include old-ie {
+			// These hacks won't appear in the normal stylesheet
+			display: inline;
+			zoom: 1;
+			whatever-ie-needs: hacks;
+		}
+
+		& .content-margins {
+			margin-right: 0;
+		}
+	}
+}
+.secondary {
+	@include respond-min(45em) {
+		float: left;
+		width: 30%;
+	}
+}

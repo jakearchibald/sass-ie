@@ -13,13 +13,29 @@ h1 {
   section h1 {
     font-size: 1.5em; }
 
-/* line 16, _global.scss */
+/* line 17, _global.scss */
+pre,
+code {
+  font-family: monospace, serif;
+  font-size: 1em;
+  _font-family: 'courier new', monospace; }
+
+/* line 25, _global.scss */
 pre code {
   display: block;
   background: #eee;
   border: 1px solid #ccc;
   overflow: auto;
   padding: 10px; }
+
+/* line 32, _global.scss */
+a:link, a:visited {
+  color: #1065bf;
+  text-decoration: none; }
+
+/* line 36, _global.scss */
+a:hover {
+  text-decoration: underline; }
 
 /* line 7, _layout.scss */
 .content-margins {

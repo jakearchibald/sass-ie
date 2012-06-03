@@ -13,10 +13,26 @@ h1 {
 		font-size: 1.5em;
 	}
 }
+pre,
+code {
+	font-family: monospace, serif;
+    font-size: 1em;
+
+    @include old-ie {
+    	_font-family: 'courier new', monospace;
+    }
+}
 pre code {
 	display: block;
 	background: #eee;
 	border: 1px solid #ccc;
 	overflow: auto;
 	padding: 10px;
+}
+a:link, a:visited {
+	color: #1065bf;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
 }

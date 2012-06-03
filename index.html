@@ -27,9 +27,17 @@
 						mobile styles.
 					</p>
 					<p>
-						Not all of us get away with that, but thankfully Sass 2.3 (not yet
-						released) can generate a seperate stylesheet with everything it needs
-						to create a desktop look & feel.
+						Not all of us get away with that, but thankfully,
+						<a href="https://github.com/nex3/sass/issues/408#issuecomment-6086901">as Chris Eppstein points out</a>,
+						Sass 3.2 (not yet released) can generate a seperate stylesheet
+						with everything it needs to create a "desktop" look.
+					</p>
+					<p>
+						This page was built mobile-first where smaller width devices
+						get a single column layout,	but IE8 and below still get a
+						two column layout. 
+						The code is on github,
+						but read on for a brief explaination.
 					</p>
 					<section>
 						<h1>_layout.scss</h1>
@@ -70,6 +78,72 @@
         width: 30%;
     }
 }</code></pre>
+						<p>
+							As you can see, there are some special
+							blocks for doing responsive stuff, along with
+							some IE specific stuff. These are user-defined
+							mixins, defined in...
+						</p>
+
+						<h1>_utils.scss</h1>
+<pre><code>$fix-mqs: false !default;
+
+@mixin respond-min($width) {
+    // If we're outputting for a fixed media query set...
+    @if $fix-mqs {
+        // ...and if we should apply these rules...
+        @if $fix-mqs >= $width {
+            // ...output the content the user gave us.
+            @content;
+        }
+    }
+    @else {
+        // Otherwise, output it using a regular media query
+        @media screen and (min-width: $width) {
+            @content;
+        }
+    }
+}
+// I also have a respond-max mixin, that does what you might expect
+
+$old-ie: false !default;
+
+@mixin old-ie {
+    // Only use this content if we're dealing with old IE
+    @if $old-ie {
+        @content;
+    }
+}</code></pre>
+						<h1>all.scss</h1>
+						<p>
+							This simply brings all the includes together.
+						</p>
+<pre><code>@import 'utils';
+@import 'global';
+@import 'layout';</code></pre>
+						<h1>all-old-ie.scss</h1>
+						<p>This generates the IE&lt;9 stylesheet:</p>
+<pre><code>$old-ie: true;
+$fix-mqs: 65em;
+@import 'all';</code></pre>
+						<p>
+							Here we set the width we want our media queries
+							to be flattened for. In this case, we want to
+							act like the document is 65em wide. This means our
+							media queries for greater-than 45em & 60em apply,
+							but the one for 70em is simply discarded.
+						</p>
+						<h1>Including the CSS</h1>
+						<p>
+							To give the right CSS to the right browsers,
+							we use good old conditional comments:
+						</p>
+<pre><code>&lt;!--[if lt IE 8]&gt;
+    &lt;link rel="stylesheet" href="css/all-old-ie.css"&gt;
+&lt;![endif]--&gt;
+&lt;!--[if gt IE 8]&gt;&lt;!--&gt;
+    &lt;link rel="stylesheet" href="css/all.css"&gt;
+&lt;!--&lt;![endif]--&gt;</code></pre>
 					</section>
 					<section>
 						<h1>Other solutions</h1>
@@ -80,6 +154,11 @@
 			<section class="secondary">
 				<div class="content-margins">
 					<h1>Some dummy secondary content</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus venenatis orci eget nisl luctus et luctus diam interdum. Etiam porttitor tincidunt erat, ac lacinia nibh lacinia sed.</p>
+					<p>Pellentesque tincidunt consectetur dolor, nec facilisis mi dapibus eu. Duis urna dui, fermentum dictum varius ut, ullamcorper eget augue.</p>
+					<p>Nulla laoreet lacinia lorem eu adipiscing. Sed commodo blandit sapien sit amet dictum. Sed suscipit, massa non ornare congue, nisl neque rhoncus turpis, facilisis elementum ligula lorem eget ligula.</p>
+					<p>Maecenas posuere mi eget justo ornare nec pretium velit consectetur. Mauris nec risus augue. Suspendisse sed libero eros, hendrerit dignissim magna. Quisque tortor neque, mollis congue aliquet vitae, pharetra non massa.</p>
+					<p>Praesent sed mauris ut sapien ultricies tincidunt a in turpis.</p>
 				</div>
 			</section>
 		</div>

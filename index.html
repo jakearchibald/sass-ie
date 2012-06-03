@@ -22,22 +22,23 @@
 					<p>
 						Building CSS mobile-first is the way forward, because blah
 						blah blah progressive enhancement blah.
-						Problem is, Internet Explorer prior to 9 ignore anything
+						Problem is, Internet Explorer prior to 9 ignores anything
 						within media query blocks, leaving those browsers with
 						mobile styles.
 					</p>
 					<p>
-						Not all of us get away with that, but thankfully,
+						Not all of us can get away with that, but thankfully,
 						<a href="https://github.com/nex3/sass/issues/408#issuecomment-6086901">as Chris Eppstein points out</a>,
-						Sass 3.2 (not yet released) can generate a seperate stylesheet
+						<a href="http://sass-lang.com/">Sass</a> 3.2 (not yet
+						released) can generate a separate stylesheet
 						with everything it needs to create a "desktop" look.
 					</p>
 					<p>
 						This page was built mobile-first where smaller width devices
 						get a single column layout,	but IE8 and below still get a
 						two column layout. 
-						The code is on github,
-						but read on for a brief explaination.
+						<a href="https://github.com/jakearchibald/sass-ie">The code is on github</a>,
+						but read on for a brief explanation.
 					</p>
 					<section>
 						<h1>_layout.scss</h1>
@@ -147,7 +148,28 @@ $fix-mqs: 65em;
 					</section>
 					<section>
 						<h1>Other solutions</h1>
-						<p>Blah</p>
+						<p>
+							There are other ways to cater for IE that don't
+							depend on Sass, such as
+							<a href="http://adactio.com/journal/4494/">this method by Jeremy Keith</a>
+							and
+							<a href="https://github.com/scottjehl/Respond">respond.js</a>.
+						</p>
+						<p>
+							Jeremy's method works but depends on you putting your
+							responsive stuff in a separate file. Personally I find that
+							putting overwrites far away from the thing it's overwriting
+							makes things difficult to maintain, which is also why
+							against separately-maintained CSS files for IE hacks.
+						</p>
+						<p>
+							respond.js is obviously JavaScript dependant, and requires you
+							to host the CSS on the same server as the page, meaning you
+							can't use a performance enhancing CDN. Also, I hear it's a little
+							slow, which JS-CSS crawlers generally are, but I don't any
+							evidence particular to respond.js.
+						</p>
+						<p>So, there you go. Roll on Sass 3.2!</p>
 					</section>
 				</div>
 			</article>

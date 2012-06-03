@@ -5,7 +5,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width">
 		<title>IE-friendly mobile-first CSS with Sass 3.2</title>
-		<link rel="stylesheet" href="css/all.css">
+		
+		<!--[if lt IE 8]>
+			<link rel="stylesheet" href="css/all-old-ie.css">
+			<script>'article|section'.replace(/\w+/g,function(t){document.createElement(t)})</script>
+		<![endif]-->
+		<!--[if gt IE 8]><!-->
+			<link rel="stylesheet" href="css/all.css">
+		<!--<![endif]-->
 	</head>
 	<body>
 		<div class="page">
@@ -19,6 +26,51 @@
 						within media query blocks, leaving those browsers with
 						mobile styles.
 					</p>
+					<p>
+						Not all of us get away with that, but thankfully Sass 2.3 (not yet
+						released) can generate a seperate stylesheet with everything it needs
+						to create a desktop look & feel.
+					</p>
+					<section>
+						<h1>_layout.scss</h1>
+						<p>This file controls the page layout:</p>
+			<pre><code>.page {
+    @include respond-min(70em) {
+        width: 70em;
+        margin: 0 auto;
+    }    
+}
+.content-margins {
+    margin: 10px;
+
+    @include respond-min(60em) {
+        margin: 20px;
+    }
+}
+.primary {
+    @include respond-min(45em) {
+        float: left;
+        width: 70%;
+
+        @include old-ie {
+            // These hacks won't appear in the normal stylesheet
+            display: inline;
+            zoom: 1;
+            whatever-ie-needs: hacks;
+        }
+
+        & .content-margins {
+            margin-right: 0;
+        }
+    }
+}
+.secondary {
+    @include respond-min(45em) {
+        float: left;
+        width: 30%;
+    }
+}</code></pre>
+					</section>
 					<section>
 						<h1>Other solutions</h1>
 						<p>Blah</p>

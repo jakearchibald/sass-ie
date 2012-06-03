@@ -13,3 +13,10 @@ h1 {
 		font-size: 1.5em;
 	}
 }
+pre code {
+	display: block;
+	background: #eee;
+	border: 1px solid #ccc;
+	overflow: auto;
+	padding: 10px;
+}

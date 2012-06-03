@@ -13,34 +13,31 @@ h1 {
   section h1 {
     font-size: 1.5em; }
 
-@media screen and (min-width: 70em) {
-  /* line 1, _layout.scss */
-  .page {
-    width: 70em;
-    margin: 0 auto; } }
+/* line 16, _global.scss */
+pre code {
+  display: block;
+  background: #eee;
+  border: 1px solid #ccc;
+  overflow: auto;
+  padding: 10px; }
 
 /* line 7, _layout.scss */
 .content-margins {
-  margin: 10px; }
-  @media screen and (min-width: 60em) {
-    /* line 7, _layout.scss */
-    .content-margins {
-      margin: 20px; } }
+  margin: 10px;
+  margin: 20px; }
 
-@media screen and (min-width: 45em) {
-  /* line 14, _layout.scss */
-  .primary {
-    float: left;
-    width: 70%;
-    display: inline;
-    zoom: 1;
-    whatever-ie-needs: hacks; }
-    /* line 26, _layout.scss */
-    .primary .content-margins {
-      margin-right: 0; } }
+/* line 14, _layout.scss */
+.primary {
+  float: left;
+  width: 70%;
+  display: inline;
+  zoom: 1;
+  whatever-ie-needs: le-sigh; }
+  /* line 26, _layout.scss */
+  .primary .content-margins {
+    margin-right: 30px; }
 
-@media screen and (min-width: 45em) {
-  /* line 31, _layout.scss */
-  .secondary {
-    float: left;
-    width: 30%; } }
+/* line 31, _layout.scss */
+.secondary {
+  float: left;
+  width: 30%; }

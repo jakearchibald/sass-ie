@@ -13,6 +13,14 @@ h1 {
   section h1 {
     font-size: 1.5em; }
 
+/* line 16, _global.scss */
+pre code {
+  display: block;
+  background: #eee;
+  border: 1px solid #ccc;
+  overflow: auto;
+  padding: 10px; }
+
 @media screen and (min-width: 70em) {
   /* line 1, _layout.scss */
   .page {
@@ -34,7 +42,7 @@ h1 {
     width: 70%; }
     /* line 26, _layout.scss */
     .primary .content-margins {
-      margin-right: 0; } }
+      margin-right: 30px; } }
 
 @media screen and (min-width: 45em) {
   /* line 31, _layout.scss */

@@ -28,6 +28,11 @@ pre code {
 	border: 1px solid #ccc;
 	overflow: auto;
 	padding: 10px;
+	font-size: 0.8em;
+
+	@include respond-min(45em) {
+		font-size: 0.9em;
+	}
 }
 a:link, a:visited {
 	color: #1065bf;

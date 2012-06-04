@@ -8,19 +8,20 @@ body {
 h1 {
   font-family: Cambria, Georgia, serif;
   font-size: 2em;
+  line-height: 1.3em;
   margin: 0 0 0.5em; }
-  /* line 12, _global.scss */
+  /* line 13, _global.scss */
   section h1 {
     font-size: 1.5em; }
 
-/* line 17, _global.scss */
+/* line 18, _global.scss */
 pre,
 code {
   font-family: monospace, serif;
   font-size: 1em;
   _font-family: 'courier new', monospace; }
 
-/* line 25, _global.scss */
+/* line 26, _global.scss */
 pre code {
   display: block;
   background: #eee;
@@ -30,32 +31,37 @@ pre code {
   font-size: 0.8em;
   font-size: 0.9em; }
 
-/* line 37, _global.scss */
+/* line 38, _global.scss */
 a:link, a:visited {
   color: #1065bf;
   text-decoration: none; }
 
-/* line 41, _global.scss */
+/* line 42, _global.scss */
 a:hover {
   text-decoration: underline; }
 
-/* line 7, _layout.scss */
+/* line 1, _layout.scss */
+.page {
+  max-width: 70em;
+  margin: 0 auto; }
+
+/* line 5, _layout.scss */
 .content-margins {
   margin: 10px;
   margin: 20px; }
 
-/* line 14, _layout.scss */
+/* line 15, _layout.scss */
 .primary {
   float: left;
   width: 70%;
   display: inline;
   zoom: 1;
   whatever-ie-needs: le-sigh; }
-  /* line 26, _layout.scss */
+  /* line 27, _layout.scss */
   .primary .content-margins {
     margin-right: 30px; }
 
-/* line 31, _layout.scss */
+/* line 32, _layout.scss */
 .secondary {
   float: left;
   width: 30%; }

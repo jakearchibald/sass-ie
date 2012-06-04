@@ -43,17 +43,18 @@
 					<section>
 						<h1>_layout.scss</h1>
 						<p>This file controls the page layout:</p>
-			<pre><code>.page {
-    @include respond-min(70em) {
-        width: 70em;
-        margin: 0 auto;
-    }    
+<pre><code>.page {
+    max-width: 70em;    
+    margin: 0 auto;
 }
 .content-margins {
     margin: 10px;
 
     @include respond-min(60em) {
         margin: 20px;
+    }
+    @include respond-min(75em) {
+        margin: 40px;
     }
 }
 .primary {
@@ -65,11 +66,11 @@
             // These hacks won't appear in the normal stylesheet
             display: inline;
             zoom: 1;
-            whatever-ie-needs: hacks;
+            whatever-ie-needs: le-sigh;
         }
 
         & .content-margins {
-            margin-right: 0;
+            margin-right: 30px;
         }
     }
 }

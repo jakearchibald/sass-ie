@@ -146,8 +146,7 @@ $fix-mqs: 65em;
 &lt;!--[if gt IE 8]&gt;&lt;!--&gt;
     &lt;link rel="stylesheet" href="css/all.css"&gt;
 &lt;!--&lt;![endif]--&gt;</code></pre>
-					</section>
-					<section>
+						
 						<h1>Other solutions</h1>
 						<p>
 							There are other ways to cater for IE that don't
@@ -159,7 +158,7 @@ $fix-mqs: 65em;
 						<p>
 							Jeremy's method works but depends on you putting your
 							responsive stuff in a separate file. Personally I find that
-							putting overwrites far away from the thing it's overwriting
+							putting overrides far away from the thing it's overriding
 							makes it difficult to maintain, which is also why
 							I'm against separately-maintained CSS files for IE hacks.
 						</p>
@@ -169,6 +168,18 @@ $fix-mqs: 65em;
 							can't use a performance enhancing CDN. Also, I hear it's a little
 							slow, which JS-CSS crawlers generally are, but I don't any
 							evidence particular to respond.js.
+						</p>
+						<h1>Won't this bloat my CSS?</h1>
+						<p>
+							Each call to <code>respond-min/max</code> will result in an
+							<code>@media</code> block in your CSS, whereas you may optimise this
+							to one block per breakpoint if you were hand-writing your CSS.
+						</p>
+						<p>
+							In that case, the Sass output will indeed be larger than hand-written CSS,
+							but gzip will chew through the repetition making the difference
+							negligible. Also, the Sass community is
+							<a href="https://github.com/nex3/sass/issues/116#issuecomment-5166163">looking into ways around the repetition</a>.
 						</p>
 						<p>So, there you go. Roll on Sass 3.2!</p>
 					</section>

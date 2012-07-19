@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width">
 		<title>IE-friendly mobile-first CSS with Sass 3.2</title>
 		
-		<!--[if lt IE 8]>
+		<!--[if lte IE 8]>
 			<link rel="stylesheet" href="css/all-old-ie.css">
 			<script>'article|section'.replace(/\w+/g,function(t){document.createElement(t)})</script>
 		<![endif]-->
@@ -140,7 +140,7 @@ $fix-mqs: 65em;
 							To give the right CSS to the right browsers,
 							we use good old conditional comments:
 						</p>
-<pre><code>&lt;!--[if lt IE 8]&gt;
+<pre><code>&lt;!--[if lte IE 8]&gt;
     &lt;link rel="stylesheet" href="css/all-old-ie.css"&gt;
 &lt;![endif]--&gt;
 &lt;!--[if gt IE 8]&gt;&lt;!--&gt;

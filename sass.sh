@@ -1,2 +1,2 @@
-~/dev/sass/bin/sass -lf css:css
-~/dev/sass/bin/sass -l --watch css:css
+sass -lf css:css
+sass -l --watch css:css

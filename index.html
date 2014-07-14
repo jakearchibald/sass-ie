@@ -1,51 +1,51 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width">
-		<title>IE-friendly mobile-first CSS with Sass 3.2</title>
-		
-		<!--[if lte IE 8]>
-			<link rel="stylesheet" href="css/all-old-ie.css">
-			<script>'article|section'.replace(/\w+/g,function(t){document.createElement(t)})</script>
-		<![endif]-->
-		<!--[if gt IE 8]><!-->
-			<link rel="stylesheet" href="css/all.css">
-		<!--<![endif]-->
-	</head>
-	<body>
-		<div class="page">
-			<article class="primary">
-				<div class="content-margins">
-					<h1>What's going on here?</h1>
-					<p>
-						Building CSS mobile-first is the way forward, because blah
-						blah blah progressive enhancement blah.
-						Problem is, Internet Explorer prior to 9 ignores anything
-						within media query blocks, leaving those browsers with
-						mobile styles.
-					</p>
-					<p>
-						Not all of us can get away with that, but thankfully,
-						<a href="https://github.com/nex3/sass/issues/408#issuecomment-6086901">as Chris Eppstein points out</a>,
-						<a href="http://sass-lang.com/">Sass</a> 3.2+ 
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>IE-friendly mobile-first CSS with Sass 3.2</title>
+    
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="css/all-old-ie.css">
+      <script>'article|section'.replace(/\w+/g,function(t){document.createElement(t)})</script>
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+      <link rel="stylesheet" href="css/all.css">
+    <!--<![endif]-->
+  </head>
+  <body>
+    <div class="page">
+      <article class="primary">
+        <div class="content-margins">
+          <h1>What's going on here?</h1>
+          <p>
+            Building CSS mobile-first is the way forward, because blah
+            blah blah progressive enhancement blah.
+            Problem is, Internet Explorer prior to 9 ignores anything
+            within media query blocks, leaving those browsers with
+            mobile styles.
+          </p>
+          <p>
+            Not all of us can get away with that, but thankfully,
+            <a href="https://github.com/nex3/sass/issues/408#issuecomment-6086901">as Chris Eppstein points out</a>,
+            <a href="http://sass-lang.com/">Sass</a> 3.2+ 
             can be used to generate a separate stylesheet
-						with everything it needs to create a "desktop" look.
-					</p>
-					<p>
-						This page was built mobile-first where smaller width devices
-						get a single column layout, but IE8 and below still get a
-						two column layout. 
-						<a href="https://github.com/jakearchibald/sass-ie">The code is on github</a>,
-						but read on for a brief explanation.
-					</p>
+            with everything it needs to create a "desktop" look.
+          </p>
+          <p>
+            This page was built mobile-first where smaller width devices
+            get a single column layout, but IE8 and below still get a
+            two column layout. 
+            <a href="https://github.com/jakearchibald/sass-ie">The code is on github</a>,
+            but read on for a brief explanation.
+          </p>
           <p>
             If you prefer to use <a href="http://lesscss.org/">Less</a>, <a href="http://www.iambacon.co.uk/blog/life-is-now-easier-create-media-query-mixins-with-rulesets-less-css">Colin Bacon details a similar approach</a>.
           </p>
-					<section>
-						<h1>_layout.scss</h1>
-						<p>This file controls the page layout:</p>
+          <section>
+            <h1>_layout.scss</h1>
+            <p>This file controls the page layout:</p>
 <pre><code>.page {
     max-width: 70em;
     margin: 0 auto;
@@ -83,14 +83,14 @@
         width: 30%;
     }
 }</code></pre>
-						<p>
-							As you can see, there are some special
-							blocks for doing responsive stuff, along with
-							some IE specific stuff. These are user-defined
-							mixins, defined in...
-						</p>
+            <p>
+              As you can see, there are some special
+              blocks for doing responsive stuff, along with
+              some IE specific stuff. These are user-defined
+              mixins, defined in...
+            </p>
 
-						<h1>_utils.scss</h1>
+            <h1>_utils.scss</h1>
 <pre><code>$fix-mqs: false !default;
 
 @mixin respond-min($width) {
@@ -119,85 +119,85 @@ $old-ie: false !default;
         @content;
     }
 }</code></pre>
-						<h1>all.scss</h1>
-						<p>
-							This simply brings all the includes together.
-						</p>
+            <h1>all.scss</h1>
+            <p>
+              This simply brings all the includes together.
+            </p>
 <pre><code>@import 'utils';
 @import 'global';
 @import 'layout';</code></pre>
-						<h1>all-old-ie.scss</h1>
-						<p>This generates the IE&lt;9 stylesheet:</p>
+            <h1>all-old-ie.scss</h1>
+            <p>This generates the IE&lt;9 stylesheet:</p>
 <pre><code>$old-ie: true;
 $fix-mqs: 65em;
 @import 'all';</code></pre>
-						<p>
-							Here we set the width we want our media queries
-							to be flattened for. In this case, we want to
-							act like the document is 65em wide. This means our
-							media queries for greater-than 45em & 60em apply,
-							but the one for 75em is simply discarded.
-						</p>
-						<h1>Including the CSS</h1>
-						<p>
-							To give the right CSS to the right browsers,
-							we use good old conditional comments:
-						</p>
+            <p>
+              Here we set the width we want our media queries
+              to be flattened for. In this case, we want to
+              act like the document is 65em wide. This means our
+              media queries for greater-than 45em & 60em apply,
+              but the one for 75em is simply discarded.
+            </p>
+            <h1>Including the CSS</h1>
+            <p>
+              To give the right CSS to the right browsers,
+              we use good old conditional comments:
+            </p>
 <pre><code>&lt;!--[if lte IE 8]&gt;
     &lt;link rel="stylesheet" href="css/all-old-ie.css"&gt;
 &lt;![endif]--&gt;
 &lt;!--[if gt IE 8]&gt;&lt;!--&gt;
     &lt;link rel="stylesheet" href="css/all.css"&gt;
 &lt;!--&lt;![endif]--&gt;</code></pre>
-						
-						<h1>Other solutions</h1>
-						<p>
-							There are other ways to cater for IE that don't
-							depend on Sass, such as
-							<a href="http://adactio.com/journal/4494/">this (documented by Jeremy Keith)</a>
-							and
-							<a href="https://github.com/scottjehl/Respond">respond.js</a>.
-						</p>
-						<p>
-							Jeremy's method works but depends on you putting your
-							responsive stuff in a separate file. Personally I find that
-							putting overrides far away from the thing it's overriding
-							makes it difficult to maintain, which is also why
-							I'm against separately-maintained CSS files for IE hacks.
-						</p>
-						<p>
-							respond.js is obviously JavaScript dependant, and requires you
-							to host the CSS on the same server as the page, meaning you
-							can't use a performance enhancing CDN. Also, I hear it's a little
-							slow, which JS-CSS crawlers generally are, but I don't have any
-							evidence particular to respond.js.
-						</p>
-						<h1>Won't this bloat my CSS?</h1>
-						<p>
-							Each call to <code>respond-min/max</code> will result in an
-							<code>@media</code> block in your CSS, whereas you may optimise this
-							to one block per breakpoint if you were hand-writing your CSS.
-						</p>
-						<p>
-							In that case, the Sass output will indeed be larger than hand-written CSS,
-							but gzip will chew through the repetition making the difference
-							negligible. Also, the Sass community is
-							<a href="https://github.com/nex3/sass/issues/116#issuecomment-5166163">looking into ways around the repetition</a>.
-						</p>
-						<p>So, there you go!</p>
-					</section>
-				</div>
-			</article>
-			<section class="secondary">
-				<div class="content-margins">
-					<h1>Some dummy secondary content</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus venenatis orci eget nisl luctus et luctus diam interdum. Etiam porttitor tincidunt erat, ac lacinia nibh lacinia sed.</p>
-					<p>Pellentesque tincidunt consectetur dolor, nec facilisis mi dapibus eu. Duis urna dui, fermentum dictum varius ut, ullamcorper eget augue.</p>
-					<p>Nulla laoreet lacinia lorem eu adipiscing. Sed commodo blandit sapien sit amet dictum. Sed suscipit, massa non ornare congue, nisl neque rhoncus turpis, facilisis elementum ligula lorem eget ligula.</p>
-					<p>Maecenas posuere mi eget justo ornare nec pretium velit consectetur. Mauris nec risus augue. Suspendisse sed libero eros, hendrerit dignissim magna. Quisque tortor neque, mollis congue aliquet vitae, pharetra non massa.</p>
-					<p>Praesent sed mauris ut sapien ultricies tincidunt a in turpis.</p>
-				</div>
-			</section>
-		</div>
-	</body>
+            
+            <h1>Other solutions</h1>
+            <p>
+              There are other ways to cater for IE that don't
+              depend on Sass, such as
+              <a href="http://adactio.com/journal/4494/">this (documented by Jeremy Keith)</a>
+              and
+              <a href="https://github.com/scottjehl/Respond">respond.js</a>.
+            </p>
+            <p>
+              Jeremy's method works but depends on you putting your
+              responsive stuff in a separate file. Personally I find that
+              putting overrides far away from the thing it's overriding
+              makes it difficult to maintain, which is also why
+              I'm against separately-maintained CSS files for IE hacks.
+            </p>
+            <p>
+              respond.js is obviously JavaScript dependant, and requires you
+              to host the CSS on the same server as the page, meaning you
+              can't use a performance enhancing CDN. Also, I hear it's a little
+              slow, which JS-CSS crawlers generally are, but I don't have any
+              evidence particular to respond.js.
+            </p>
+            <h1>Won't this bloat my CSS?</h1>
+            <p>
+              Each call to <code>respond-min/max</code> will result in an
+              <code>@media</code> block in your CSS, whereas you may optimise this
+              to one block per breakpoint if you were hand-writing your CSS.
+            </p>
+            <p>
+              In that case, the Sass output will indeed be larger than hand-written CSS,
+              but gzip will chew through the repetition making the difference
+              negligible. Also, the Sass community is
+              <a href="https://github.com/nex3/sass/issues/116#issuecomment-5166163">looking into ways around the repetition</a>.
+            </p>
+            <p>So, there you go!</p>
+          </section>
+        </div>
+      </article>
+      <section class="secondary">
+        <div class="content-margins">
+          <h1>Some dummy secondary content</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus venenatis orci eget nisl luctus et luctus diam interdum. Etiam porttitor tincidunt erat, ac lacinia nibh lacinia sed.</p>
+          <p>Pellentesque tincidunt consectetur dolor, nec facilisis mi dapibus eu. Duis urna dui, fermentum dictum varius ut, ullamcorper eget augue.</p>
+          <p>Nulla laoreet lacinia lorem eu adipiscing. Sed commodo blandit sapien sit amet dictum. Sed suscipit, massa non ornare congue, nisl neque rhoncus turpis, facilisis elementum ligula lorem eget ligula.</p>
+          <p>Maecenas posuere mi eget justo ornare nec pretium velit consectetur. Mauris nec risus augue. Suspendisse sed libero eros, hendrerit dignissim magna. Quisque tortor neque, mollis congue aliquet vitae, pharetra non massa.</p>
+          <p>Praesent sed mauris ut sapien ultricies tincidunt a in turpis.</p>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>
